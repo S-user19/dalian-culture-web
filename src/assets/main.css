@@ -1,0 +1,94 @@
+/* 全局样式变量 */
+:root {
+  --primary-color: #0369a1;
+  --primary-light: #0ea5e9;
+  --accent-color: #fbbf24;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --bg-light: #f8fafc;
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --radius: 12px;
+}
+
+/* 高对比度模式 */
+.high-contrast {
+  --text-primary: #000;
+  --text-secondary: #333;
+  --bg-light: #fff;
+}
+
+/* 字体大小调节 */
+.font-large {
+  font-size: 18px;
+}
+.font-xlarge {
+  font-size: 20px;
+}
+
+/* 通用容器 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 页面通用样式 */
+.page-hero {
+  padding: 60px 0;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 50%, #0ea5e9 100%);
+}
+.page-hero h1 {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+.page-hero p {
+  font-size: 16px;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.page-section {
+  padding: 48px 0;
+}
+.section-title {
+  font-size: 28px;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 36px;
+  font-size: 15px;
+}
+
+/* 网格布局 */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .grid-3,
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .page-hero h1 {
+    font-size: 26px;
+  }
+  .section-title {
+    font-size: 22px;
+  }
+}
