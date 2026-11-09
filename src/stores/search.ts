@@ -60,7 +60,7 @@ export const useSearchStore = defineStore('search', () => {
   const hideDropdown = () => {
     setTimeout(() => {
       showDropdown.value = false
-    }, 200)
+    }, 500)
   }
 
   return {

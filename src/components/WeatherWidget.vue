@@ -97,7 +97,7 @@ onMounted(() => {
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  color: #fff;
+  color: #475569;
 }
 .weather-icon {
   font-size: 18px;

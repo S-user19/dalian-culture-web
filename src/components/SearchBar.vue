@@ -19,10 +19,27 @@ const handleKeydown = (e: KeyboardEvent) => {
   }
 }
 
-const selectResult = (path: string) => {
-  router.push(path)
+const selectResult = (path: string, title?: string) => {
+  if (title) {
+    router.push({ path, query: { open: title } })
+  } else {
+    router.push(path)
+  }
   searchStore.clearSearch()
   inputValue.value = ''
+}
+
+const handleSearch = () => {
+  if (searchStore.results.length > 0) {
+    const result = searchStore.results[0]
+    if (result.title) {
+      router.push({ path: result.path, query: { open: result.title } })
+    } else {
+      router.push(result.path)
+    }
+    searchStore.clearSearch()
+    inputValue.value = ''
+  }
 }
 </script>
 
@@ -39,7 +56,7 @@ const selectResult = (path: string) => {
         @keydown="handleKeydown"
         @focus="searchStore.showDropdown = true"
       />
-      <button class="search-btn" aria-label="搜索">
+      <button class="search-btn" aria-label="搜索" @click="handleSearch">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="8"></circle>
           <path d="m21 21-4.35-4.35"></path>
@@ -57,7 +74,7 @@ const selectResult = (path: string) => {
           v-for="item in searchStore.results"
           :key="item.id"
           class="search-result-item"
-          @click="selectResult(item.path)"
+          @click="selectResult(item.path, item.title)"
         >
           <span class="result-category">{{ item.category }}</span>
           <div class="result-info">
@@ -78,27 +95,27 @@ const selectResult = (path: string) => {
 }
 .search-input-wrapper {
   display: flex;
-  background: rgba(255, 255, 255, 0.15);
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
   border-radius: 24px;
   overflow: hidden;
-  backdrop-filter: blur(10px);
 }
 .search-input {
   flex: 1;
   padding: 10px 16px;
   border: none;
   background: transparent;
-  color: #fff;
+  color: #1e293b;
   font-size: 14px;
   outline: none;
 }
 .search-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: #94a3b8;
 }
 .search-btn {
   padding: 0 16px;
   border: none;
-  background: rgba(255, 255, 255, 0.1);
+  background: #0ea5e9;
   color: #fff;
   cursor: pointer;
   display: flex;
@@ -106,7 +123,7 @@ const selectResult = (path: string) => {
   transition: background 0.2s;
 }
 .search-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #0284c7;
 }
 .search-dropdown {
   position: absolute;
